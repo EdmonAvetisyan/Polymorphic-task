@@ -1,1 +1,61 @@
-/* No CSS *//*# sourceMappingURL=index.css.map */
+@font-face {
+  font-family: "Work Sans";
+  src: url("../fonts/WorkSans-VariableFont_wght.ttf") format("truetype"), url("../fonts/WorkSans-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("../fonts/PlayfairDisplay-VariableFont_wght.ttf") format("truetype"), url("../fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #171717;
+  font-family: 'Work Sans', sans-serif;
+}
+
+.container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+/*# sourceMappingURL=index.css.map */
