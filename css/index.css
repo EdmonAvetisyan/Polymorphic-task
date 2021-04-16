@@ -122,6 +122,50 @@ body {
   font-weight: 700;
 }
 
+.page-footer {
+  background-color: #ebebeb;
+  padding: 30px 0;
+}
+.page-footer .soc-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.page-footer .menu {
+  font-size: 1.3em;
+  color: #5f5f5f;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+}
+.page-footer .menu .item {
+  flex: none;
+}
+.page-footer .menu .item .link {
+  color: inherit;
+  padding: 7.5px;
+  transition: color 0.2s;
+}
+.page-footer .menu .item .link:hover.facebook {
+  color: #3b5998;
+}
+.page-footer .menu .item .link:hover.twitter {
+  color: #00acee;
+}
+.page-footer .menu .item .link:hover.google {
+  color: #db4a39;
+}
+.page-footer .menu .item .link:hover.behance {
+  color: #053eff;
+}
+.page-footer .menu .item .link:hover.pinterest {
+  color: #e60023;
+}
+.page-footer .menu .item .link:hover.instagram {
+  color: #8a3ab9;
+}
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
@@ -142,6 +186,12 @@ body {
     max-width: 1140px;
   }
 }
+@media (max-width: 575px) {
+  .page-footer .menu {
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+}
 @media (max-width: 767px) {
   .page-header {
     padding: 10px 0;
@@ -150,7 +200,7 @@ body {
     display: block;
   }
   .page-header .menu {
-    left: -200%;
+    left: -100%;
     flex-direction: column;
     align-items: flex-start;
     position: fixed;
@@ -168,6 +218,8 @@ body {
   .page-header .menu > .item {
     width: 100%;
   }
-}
 
-/*# sourceMappingURL=index.css.map */
+  .page-footer {
+    padding: 10px;
+  }
+}

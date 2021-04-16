@@ -5,6 +5,13 @@ $gray-dark: #ebebeb;
 $gray-light: #f6f6f6;
 $white: #ffffff;
 
+$facebook-color: #3b5998;
+$tweeter-color: #00acee;
+$google-color: #db4a39;
+$behance-color: #053eff;
+$pinterest-color: #e60023;
+$instagram-color: #8a3ab9;
+
 $space-sm: 10px;
 $space-md: 15px;
 $space-lg: 20px;
@@ -171,6 +178,47 @@ body {
 
 // ========== end header ==========
 
+// ========== footer ==========
+.page-footer{
+  background-color: $gray-dark;
+  padding: $space-xl 0;
+
+  .soc-list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu{
+    font-size: 1.3em;
+    color: $black-light;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+
+    .item{
+      flex: none;
+
+      .link{
+        color: inherit;
+        padding: $space-md / 2;
+        transition: color .2s;
+
+        &:hover{
+          &.facebook{color: $facebook-color}
+          &.twitter{color: $tweeter-color}
+          &.google{color: $google-color}
+          &.behance{color: $behance-color}
+          &.pinterest{color: $pinterest-color}
+          &.instagram{color: $instagram-color}
+        }
+      }
+    }
+  }
+}
+// ========== end footer ==========
+
 // ========== media queries ==========
 @media (min-width: 576px) {
   .container {
@@ -196,8 +244,14 @@ body {
   }
 }
 
-
-@media (max-width: 575px) {}
+@media (max-width: 575px) {
+  .page-footer{
+    .menu{
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+  }
+}
 
 @media (max-width: 767px) {
   .page-header {
@@ -208,7 +262,7 @@ body {
     }
 
     .menu {
-      left: -200%;
+      left: -100%;
       flex-direction: column;
       align-items: flex-start;
       position: fixed;
@@ -229,6 +283,10 @@ body {
         width: 100%;
       }
     }
+  }
+
+  .page-footer{
+    padding: $space-sm;
   }
 }
 
