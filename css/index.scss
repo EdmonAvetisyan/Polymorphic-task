@@ -8,6 +8,9 @@ $white: #ffffff;
 $space-sm: 10px;
 $space-md: 15px;
 $space-lg: 20px;
+$space-xl: 30px;
+
+$mobile-menu-width: 240px;
 // ========== end sass variables ==========
 
 // ========== fonts ==========
@@ -33,8 +36,8 @@ $space-lg: 20px;
 
 body {
   font-size: 15px;
-  line-height: 1.8;
   color: $black-dark;
+  overflow: hidden;
   font-family: 'Work Sans', sans-serif;
   // font-family: 'Playfair Display', serif;
 }
@@ -49,7 +52,6 @@ body {
 }
 
 .container {
-  width: 100%;
   padding-right: $space-md;
   padding-left: $space-md;
   margin-right: auto;
@@ -57,6 +59,117 @@ body {
 }
 
 // ========== end container ==========
+
+// ========== header ==========
+.page-header {
+  position: sticky;
+  top: 0;
+  background-color: $white;
+  padding: $space-xl 0;
+
+  .nav {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+  }
+
+  .toggle-menu {
+    visibility: hidden;
+    display: none;
+    z-index: 2;
+    cursor: pointer;
+    font-size: 1.3em;
+    transition: color .3s;
+
+    &::before {
+      visibility: visible;
+      content: "\f0c9";
+      font-family: "Font Awesome 5 Free";
+    }
+
+    &:checked{
+      &::before{
+        content: "\f00d";
+      }
+
+      &+.menu {
+        left: 0;
+        top: 0;
+        background-color: $white;
+
+        &::before{
+          left: $mobile-menu-width;
+        }
+      }
+    }
+
+    &:hover{
+      color: $black-dark;
+    }
+  }
+
+  .menu {
+    font-size: 0.93em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style-type: none;
+    color: $black-light;
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    transition: left .4s;
+    box-sizing: border-box;
+
+    &::before{
+      content: "";
+      position: fixed;
+      top: 0;
+      transition: .4s;
+      width: 100%;
+      height: 100%;
+      background-color: rgba($black-dark, .2);
+      left: 200%;
+    }
+
+    >.item {
+      flex: none;
+      z-index: 1;
+    }
+
+    >.item:first-child .link {
+      padding-left: 0;
+    }
+
+    >.item:last-child .link {
+      padding-right: 0;
+    }
+
+    .item {
+      >.link {
+        display: block;
+        color: inherit;
+        text-decoration: none;
+        padding: 6px 15px;
+        text-transform: uppercase;
+        transition: color .2s;
+
+        &:hover {
+          text-decoration: none;
+          color: $black-dark;
+        }
+
+        &.current {
+          color: $black-dark;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
+
+// ========== end header ==========
 
 // ========== media queries ==========
 @media (min-width: 576px) {
@@ -82,5 +195,45 @@ body {
     max-width: 1140px;
   }
 }
+
+
+@media (max-width: 575px) {}
+
+@media (max-width: 767px) {
+  .page-header {
+    padding: $space-sm 0;
+
+    .toggle-menu {
+      display: block;
+    }
+
+    .menu {
+      left: -200%;
+      flex-direction: column;
+      align-items: flex-start;
+      position: fixed;
+      height: 100vh;
+      padding: $space-sm 0;
+      box-shadow: 0 0 30px rgb(0 0 0 / 23%);
+      width: $mobile-menu-width;
+
+      >.item:first-child .link {
+        padding-left: 15px;
+      }
+
+      >.item:last-child .link {
+        padding-right: 15px;
+      }
+
+      >.item{
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {}
+
+@media (max-width: 1199px) {}
 
 // ========== end media queries ==========
