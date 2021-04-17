@@ -42,9 +42,9 @@ $mobile-menu-width: 240px;
 // ========== end fonts ==========
 
 body {
+  overflow-x: hidden;
   font-size: 15px;
   color: $black-dark;
-  overflow: hidden;
   font-family: 'Work Sans', sans-serif;
   // font-family: 'Playfair Display', serif;
 }
@@ -70,7 +70,7 @@ body {
 // ========== header ==========
 .page-header {
   position: sticky;
-  top: 0;
+  top: -30px;
   background-color: $white;
   padding: $space-xl 0;
 
@@ -94,8 +94,8 @@ body {
       font-family: "Font Awesome 5 Free";
     }
 
-    &:checked{
-      &::before{
+    &:checked {
+      &::before {
         content: "\f00d";
       }
 
@@ -104,13 +104,13 @@ body {
         top: 0;
         background-color: $white;
 
-        &::before{
+        &::before {
           left: $mobile-menu-width;
         }
       }
     }
 
-    &:hover{
+    &:hover {
       color: $black-dark;
     }
   }
@@ -129,7 +129,7 @@ body {
     transition: left .4s;
     box-sizing: border-box;
 
-    &::before{
+    &::before {
       content: "";
       position: fixed;
       top: 0;
@@ -178,18 +178,104 @@ body {
 
 // ========== end header ==========
 
+// ========== posts ==========
+.posts-wrap {
+  padding: $space-xl*3 0;
+  background-color: $gray-light;
+}
+
+.tiles-wrap {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: none;
+
+  &.animated li {
+    transition: all 0.3s ease-out;
+  }
+
+  &.wookmark-initialised li {
+    opacity: 1;
+  }
+
+  li {
+    display: block;
+    opacity: 0;
+    float: left;
+    width: 200px;
+  }
+}
+
+.card {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  transition: box-shadow, transform .3s;
+
+  &:hover {
+    box-shadow: rgba(99, 99, 99, 0.23) 0px 2px 15px 0px;
+    transform: translateY(-10px);
+  }
+
+  >.link {
+    color: inherit;
+    text-decoration: none;
+    display: inherit;
+    cursor: pointer;
+
+    &:hover {
+      color: inherit;
+
+      .title {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  figure {
+    margin: 0;
+
+    figcaption {
+      padding: $space-lg $space-xl;
+    }
+  }
+
+  .title {
+    font-size: 1.3em;
+    font-weight: 700;
+    margin: 0 0 10px;
+
+    &:first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  .date {
+    font-weight: 500;
+    font-size: .8em;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    color: $black-light;
+    margin: 0;
+  }
+}
+
+// ========== end posts ==========
+
 // ========== footer ==========
-.page-footer{
+.page-footer {
   background-color: $gray-dark;
   padding: $space-xl 0;
 
-  .soc-list{
+  .soc-list {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .menu{
+  .menu {
     font-size: 1.3em;
     color: $black-light;
     margin: 0;
@@ -197,26 +283,44 @@ body {
     list-style-type: none;
     display: flex;
 
-    .item{
+    .item {
       flex: none;
 
-      .link{
+      .link {
         color: inherit;
         padding: $space-md / 2;
         transition: color .2s;
 
-        &:hover{
-          &.facebook{color: $facebook-color}
-          &.twitter{color: $tweeter-color}
-          &.google{color: $google-color}
-          &.behance{color: $behance-color}
-          &.pinterest{color: $pinterest-color}
-          &.instagram{color: $instagram-color}
+        &:hover {
+          &.facebook {
+            color: $facebook-color
+          }
+
+          &.twitter {
+            color: $tweeter-color
+          }
+
+          &.google {
+            color: $google-color
+          }
+
+          &.behance {
+            color: $behance-color
+          }
+
+          &.pinterest {
+            color: $pinterest-color
+          }
+
+          &.instagram {
+            color: $instagram-color
+          }
         }
       }
     }
   }
 }
+
 // ========== end footer ==========
 
 // ========== media queries ==========
@@ -245,8 +349,8 @@ body {
 }
 
 @media (max-width: 575px) {
-  .page-footer{
-    .menu{
+  .page-footer {
+    .menu {
       justify-content: space-between;
       flex-grow: 1;
     }
@@ -268,7 +372,7 @@ body {
       position: fixed;
       height: 100vh;
       padding: $space-sm 0;
-      box-shadow: 0 0 30px rgb(0 0 0 / 23%);
+      // box-shadow: 0 0 30px rgb(0 0 0 / 23%);
       width: $mobile-menu-width;
 
       >.item:first-child .link {
@@ -279,13 +383,17 @@ body {
         padding-right: 15px;
       }
 
-      >.item{
+      >.item {
         width: 100%;
       }
     }
   }
 
-  .page-footer{
+  .posts-wrap {
+    padding: $space-xl 0;
+  }
+
+  .page-footer {
     padding: $space-sm;
   }
 }
