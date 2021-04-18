@@ -9,13 +9,13 @@ window.onload = function () {
     // comparator: null,
     // direction: undefined,
     // ignoreInactiveItems: true,
-    itemWidth: 210,
+    // itemWidth: 370,
     // fillEmptySpace: false,
     // onLayoutChanged: undefined,
     // outerOffset: 200,
     // possibleFilters: [],
     // resizeDelay: 10,
-    // verticalOffset: undefined
+    // verticalOffset: 90,
 
 
   });

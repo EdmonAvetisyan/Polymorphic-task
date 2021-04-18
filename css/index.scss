@@ -17,6 +17,10 @@ $space-md: 15px;
 $space-lg: 20px;
 $space-xl: 30px;
 
+$post-width-lg: 350px;
+$post-width-md: 280px;
+$post-width-sm: 200px;
+
 $mobile-menu-width: 240px;
 // ========== end sass variables ==========
 
@@ -46,18 +50,36 @@ body {
   font-size: 15px;
   color: $black-dark;
   font-family: 'Work Sans', sans-serif;
-  // font-family: 'Playfair Display', serif;
+}
+
+.page-wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .page-header,
+  .page-footer {
+    flex: none;
+  }
+
+  .main-content {
+    flex-grow: 1;
+  }
+}
+
+.btn {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  padding: 4px 8px;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+
 }
 
 // ========== container ==========
-.container-fluid {
-  width: 100%;
-  padding-right: $space-md;
-  padding-left: $space-md;
-  margin-right: auto;
-  margin-left: auto;
-}
-
 .container {
   padding-right: $space-md;
   padding-left: $space-md;
@@ -70,9 +92,10 @@ body {
 // ========== header ==========
 .page-header {
   position: sticky;
-  top: -30px;
+  top: 0;
   background-color: $white;
   padding: $space-xl 0;
+  z-index: 1;
 
   .nav {
     display: flex;
@@ -87,11 +110,15 @@ body {
     cursor: pointer;
     font-size: 1.3em;
     transition: color .3s;
+    position: relative;
 
     &::before {
       visibility: visible;
       content: "\f0c9";
       font-family: "Font Awesome 5 Free";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
     }
 
     &:checked {
@@ -179,31 +206,48 @@ body {
 // ========== end header ==========
 
 // ========== posts ==========
-.posts-wrap {
-  padding: $space-xl*3 0;
+.main-content {
   background-color: $gray-light;
+
+  .posts-wrap {
+    padding: $space-xl*3 0 $space-xl*2;
+  }
+
+  .more-posts-box {
+    text-align: center;
+    background-color: $white;
+    padding: $space-xl 0;
+
+    .more-posts {
+      transition: transform .3s;
+
+      &:hover {
+        transform: translateY(-5px);
+      }
+    }
+  }
 }
 
-.tiles-wrap {
+.posts-list {
   position: relative;
   margin: 0;
   padding: 0;
   list-style-type: none;
   display: none;
 
-  &.animated li {
+  &.animated .post {
     transition: all 0.3s ease-out;
   }
 
-  &.wookmark-initialised li {
+  &.wookmark-initialised .post {
     opacity: 1;
   }
 
-  li {
+  .post {
     display: block;
     opacity: 0;
     float: left;
-    width: 200px;
+    width: $post-width-lg;
   }
 }
 
@@ -216,7 +260,7 @@ body {
     transform: translateY(-10px);
   }
 
-  >.link {
+  .card-link {
     color: inherit;
     text-decoration: none;
     display: inherit;
@@ -231,10 +275,14 @@ body {
     }
   }
 
-  figure {
+  .figure {
     margin: 0;
 
-    figcaption {
+    .banner {
+      width: 100%;
+    }
+
+    .content {
       padding: $space-lg $space-xl;
     }
   }
@@ -243,6 +291,8 @@ body {
     font-size: 1.3em;
     font-weight: 700;
     margin: 0 0 10px;
+    font-family: 'Playfair Display', serif;
+
 
     &:first-letter {
       text-transform: uppercase;
@@ -259,6 +309,8 @@ body {
   .description {
     color: $black-light;
     margin: 0;
+    font-size: 1em;
+    line-height: 1.6;
   }
 }
 
@@ -348,18 +400,37 @@ body {
   }
 }
 
-@media (max-width: 575px) {
-  .page-footer {
-    .menu {
-      justify-content: space-between;
-      flex-grow: 1;
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1199px) {
+  .posts-list {
+    .post {
+      width: $post-width-md;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .posts-list {
+    .post {
+      width: $post-width-sm;
     }
   }
 }
 
 @media (max-width: 767px) {
   .page-header {
-    padding: $space-sm 0;
+    padding: $space-md 0;
 
     .toggle-menu {
       display: block;
@@ -389,17 +460,44 @@ body {
     }
   }
 
-  .posts-wrap {
-    padding: $space-xl 0;
+  .main-content {
+
+    .posts-wrap {
+      padding: $space-xl 0;
+    }
+
+    .more-posts-box {
+      padding: $space-md 0
+    }
+  }
+
+  .card {
+
+    .figure {
+      .content {
+        padding: $space-md $space-sm;
+      }
+    }
   }
 
   .page-footer {
-    padding: $space-sm;
+    padding: $space-lg;
   }
 }
 
-@media (max-width: 991px) {}
+@media (max-width: 575px) {
+  .page-footer {
+    .menu {
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+  }
 
-@media (max-width: 1199px) {}
+  .posts-list {
+    .post {
+      width: 100%;
+    }
+  }
+}
 
 // ========== end media queries ==========
